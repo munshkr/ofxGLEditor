@@ -328,10 +328,6 @@ class ofxEditor {
 		/// shared copy/paste buffer if system clipboard isn't available
 		static u32string s_copyBuffer;
 	
-		/// timestamp for calculating animations, shared between editors for smooth
-		/// animation when switching back and forth
-		static float s_time;
-	
 		// auto focus
 		static float s_autoFocusError; //< scale snapping amount
 		static float s_autoFocusSpeed; //< scale speed (shrink/grow modifier)
@@ -386,6 +382,7 @@ class ofxEditor {
 		bool m_lineNumbers;  //< enable line numbers?
 		unsigned int m_lineNumWidth; //< line number block width in chars 
 	
+		float m_time;         //< timestamp for calculating animations
 		float m_delta;        //< difference from last timestamp
 		float m_flash;        //< cursor flash animation time
 		bool m_blowupCursor;  //< blow up the cursor?

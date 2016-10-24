@@ -64,8 +64,6 @@ bool ofxEditor::s_textShadow = true;
 
 u32string ofxEditor::s_copyBuffer;
 
-float ofxEditor::s_time = 0;
-
 float ofxEditor::s_autoFocusError = 10;
 float ofxEditor::s_autoFocusSpeed = 1.0;
 float ofxEditor::s_autoFocusMinScale = 0.5;
@@ -113,6 +111,7 @@ ofxEditor::ofxEditor() {
 	m_lineNumbers = false;
 	m_lineNumWidth = 0;
 	
+	m_time = 0;
 	m_delta = 0;
 	m_flash = 0;
 	m_blowupCursor = false;
@@ -161,6 +160,7 @@ ofxEditor::ofxEditor(ofxEditorSettings &sharedSettings) {
 	m_lineNumbers = false;
 	m_lineNumWidth = 0;
 	
+	m_time = 0;
 	m_delta = 0;
 	m_flash = 0;
 	m_blowupCursor = false;
@@ -2013,8 +2013,8 @@ void ofxEditor::eraseSelection(UndoActionType type) {
 
 //--------------------------------------------------------------
 void ofxEditor::updateTimestamps() {
-	m_delta = ofGetElapsedTimef() - s_time;
-	s_time = ofGetElapsedTimef();
+	m_delta = ofGetElapsedTimef() - m_time;
+	m_time = ofGetElapsedTimef();
 	if (m_delta > 10.0f) {
 		m_delta = 0.00001f;
 	}
